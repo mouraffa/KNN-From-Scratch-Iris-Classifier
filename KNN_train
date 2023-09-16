@@ -1,0 +1,40 @@
+import numpy as np  # NumPy for numerical operations
+import matplotlib.pyplot as plt  # Matplotlib for data visualization
+from matplotlib.colors import ListedColormap  # ListedColormap for custom color maps
+from sklearn import datasets  # Scikit-Learn for dataset loading
+from sklearn.model_selection import train_test_split  # For splitting the dataset
+from KNN_Model import KNN  # Import your KNN class from the appropriate module
+
+
+def main():
+    # Define a colormap for plotting
+    color_map = ListedColormap(['#FF0000', '#00FF00', '#0000FF'])
+
+    # Load the Iris dataset
+    iris = datasets.load_iris()
+    X, y = iris.data, iris.target
+
+    # Split the dataset into training and testing sets
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1234)
+
+    # Visualize the dataset by plotting the sepal length vs. sepal width
+    plt.figure()
+    plt.scatter(X[:, 2], X[:, 3], c=y, cmap=color_map, edgecolor='k', s=20)
+    plt.xlabel('Sepal Length (cm)')
+    plt.ylabel('Sepal Width (cm)')
+    plt.title('Iris Dataset - Sepal Length vs. Sepal Width')
+    plt.show()
+
+    # Initialize and train the KNN classifier
+    knn_classifier = KNN(k=9)  # Create a KNN classifier with k=5 neighbors
+    knn_classifier.fit(X_train, y_train)  # Train the classifier on the training data
+
+    # Make predictions on the test data
+    predictions = knn_classifier.predict(X_test)
+
+    # Calculate and print the accuracy of the classifier
+    accuracy = np.sum(predictions == y_test) / len(y_test)
+    print(f'Accuracy: {accuracy * 100:.2f}%')
+
+if __name__ == "__main__":
+    main()
