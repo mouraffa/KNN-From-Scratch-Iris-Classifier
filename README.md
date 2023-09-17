@@ -41,7 +41,7 @@ This project is an implementation of the K-Nearest Neighbors (KNN) algorithm fro
 For comprehensive visualization of the Iris dataset , refer to the `Data_visualization.ipynb` notebook. 
 ![Relation between variables - Sepal Length vs. Sepal](./r1.png)
 
-![Pairplot for multivariate analysis](/r2)
+![Pairplot for multivariate analysis](/r2.png)
 
 ## Contributing
 
